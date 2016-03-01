@@ -1,13 +1,20 @@
 package com.example.yls.customview_chun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +33,40 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        initListView();
+
     }
+
+    private void initListView(){
+        ListView listView = (ListView)findViewById(R.id.listView);
+        ArrayList<String> data = new ArrayList<String>();
+        data.add("ListView_EmptyView");
+        data.add("ImageView");
+        ArrayAdapter adatpter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,data);
+        listView.setAdapter(adatpter);
+        listView.setOnItemClickListener(new ListListener());
+    }
+
+    class ListListener implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            switch(position){
+                case 0:
+                    Log.i(Utils.TAG, "position:"+position+",show ListView_EmptyView");
+                    MainActivity.this.startActivity(new Intent(MainActivity.this,EmptyListActivity.class));
+                    break;
+                case 1:
+                    Log.i(Utils.TAG, "position:"+position+",show ImageView");
+                    MainActivity.this.startActivity(new Intent(MainActivity.this, ImageViewActivity.class));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
