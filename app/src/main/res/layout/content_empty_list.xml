@@ -11,5 +11,28 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.yls.customview_chun.EmptyListActivity"
     tools:showIn="@layout/activity_empty_list">
+    <Button
+        android:id="@+id/btn_add"
+        android:text="add"
+        android:onClick="onClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="del"
+        android:id="@+id/btn_del"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btn_add"
+        android:layout_toEndOf="@+id/btn_add" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_empty"
+        android:onClick="onClick"
+        android:layout_below="@+id/btn_add"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
