@@ -41,16 +41,25 @@ public class EmptyListActivity extends AppCompatActivity {
         data.add("2");
         adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,data);
         lv.setAdapter(adapter);
+        lv.setEmptyView(getEmptyView());
+    }
+
+    private View getEmptyView() {
+        View view = findViewById(R.id.textView_empty);
+        return view;
     }
 
     public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_add:
                 int num = data.size();
+                num++;
                 data.add(""+num);
                 break;
             case R.id.btn_del:
-                data.remove(data.size() - 1);
+                int size = data.size();
+                if(size > 0)
+                    data.remove(data.size() - 1);
                 break;
             default:
                 break;
